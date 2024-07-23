@@ -6,7 +6,7 @@
   }
   <input type="text" placeholder="Preço" class="form-control" formControlName="preco" [(ngModel)]="produto.preco">
   <input type="date" placeholder="Data do Lote" class="form-control" formControlName="dataLote" [(ngModel)]="produto.dataLote">
-  <input type="text" placeholder="Tipo do Produto" class="form-control" formControlName="tipo" [(ngModel)]="produto.tipo">
+  <input type="text" placeholder="Marca do Produto" class="form-control" formControlName="tipo" [(ngModel)]="produto.tipo">
 
   @if(exibirBotoes) {
     <input type="button" value="Cadastrar" class="btn btn-primary" (click)="salvarProduto()" [disabled]="formulario.invalid">
@@ -18,14 +18,10 @@
         <button class="custom-button-inativo"  (click)="disponibilizar(formulario.value.id)">
           <i class="bi bi-x-square custom-icon-inativo"></i>
         </button>
-
-        <!--<button class="btn btn-warning" (click)="disponibilizar(formulario.value.nome)"></button>-->
     } @else {
       <button class="custom-button-ativo" (click)="disponibilizar(formulario.value.id)">
         <i class="bi bi-check-square-fill custom-icon-ativo"></i>
       </button>
-
-      <!--<button class="btn btn-warning" (click)="disponibilizar(formulario.value.nome)"></button>-->
     }
     <input type="button" value="Cancelar" class="btn btn-primary" (click)="cancelar()">
   }
@@ -40,8 +36,7 @@
       <th>Nome</th>
       <th>Preço</th>
       <th>Data do Lote</th>
-      <th>Tipo do Produto</th>
-      <!--<th>Marca</th>-->
+      <th>Marca</th>
       <th>Disponibilizar</th>
       <th>Selecionar</th>
     </tr>
@@ -59,7 +54,6 @@
         <td>
           <button class="custom-button-inativo" (click)="disponibilizar(p.id)">
             <i class="bi bi-x-square custom-icon-inativo"></i>
-            <!--bi bi-x-square-fill-->
           </button>
         </td>
       } @else {
@@ -67,11 +61,9 @@
           <button class="custom-button-ativo" (click)="disponibilizar(p.id)">
             <i class="bi bi-check-square-fill custom-icon-ativo"></i>
           </button>
-          <!--bi bi-check-square-->
         </td>
       }
       <td>
-        <!--<button class="btn btn-success" (click)="selecionarProduto(i)">Selecionar</button>-->
         <button class="custom-button-editar" (click)="selecionarProduto(i)">
           <i class="bi bi-pencil-square custom-icon-editar"></i>
         </button>

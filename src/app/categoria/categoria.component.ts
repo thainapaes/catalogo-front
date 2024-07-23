@@ -66,25 +66,20 @@ export class CategoriaComponent {
   }
 
   selecionarCategoria(posicao:number):void{
-    debugger
     this.categoria = this.categorias[posicao];
-    debugger
 
     this.exibirBotoes = false;
     this.tabelaVisivel = false;
   }
 
   alterar(id:number):void{
-    debugger
     this.request = this.categoriaToRequest(this.formulario.value as Categoria);
-    debugger
     this.service.alterarCategoriaId(id, this.request)
     .subscribe(retorno => {
       let posicao = this.categorias.findIndex(obj => {
         return obj.id == (retorno.id);
       });
 
-      debugger
       this.categorias[posicao] = retorno;
       this.categoria = new Categoria();
       this.request = this.categoriaToRequest(new Categoria);
@@ -97,10 +92,9 @@ export class CategoriaComponent {
   }
 
   desvincular(id: number, idProduto:number):void{
-    debugger
     this.desvincularRequest.categoriaId = id
     this.desvincularRequest.produtoId = idProduto
-    debugger
+
     this.service.desvincular(this.desvincularRequest)
     .subscribe(retorno => {
       let posicao = this.categorias.findIndex(obj => {
@@ -125,7 +119,6 @@ export class CategoriaComponent {
   }
 
   removerCategoria(id:number):void{
-
     this.service.remover(id)
     .subscribe(retorno => {
       if (retorno.toString() === "OK") {
@@ -149,7 +142,6 @@ export class CategoriaComponent {
   categoriaToRequest(c: Categoria):any{
     this.dto.nome = c.nome;
     this.dto.secao = c.secao;
-    debugger
     if (c.produtoId === undefined) {
       this.dto.produtoId = null;
     } else {

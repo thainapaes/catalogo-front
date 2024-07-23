@@ -31,27 +31,16 @@ export class CategoriaService {
     return this.http.post<Categoria>(this.url, obj);
   }
 
-  alterarCategoria(celular:string, obj:CategoriaRequestDto):Observable<Categoria>{
-    return this.http.patch<Categoria>(this.url + "/" + celular, obj);
-  }
-
   alterarCategoriaId(id:number, obj:CategoriaRequestDto):Observable<Categoria>{
     return this.http.patch<Categoria>(this.url + "/" + id, obj);
   }
 
   remover(id:number):Observable<HttpStatusCode>{
-    return this.http.delete<HttpStatusCode>(this.url + id);
+    return this.http.delete<HttpStatusCode>(this.url + "/" + id);
   }
 
   desvincular(obj:DesvincularProdutoDto):Observable<Categoria>{
     return this.http.delete<Categoria>(this.url + "/desvincular" + obj);
   }
 
-  /*disponibilizar(obj: ProdDisponivelResquest):Observable<Categoria>{
-    return this.http.patch<Produto>(this.url + "/disponibilizarNome", obj);
-  }
-
-  disponibilizarPorId(obj: ProdDisponivelResquest):Observable<Produto>{
-    return this.http.patch<Produto>(this.url + "/disponibilizar", obj);
-  }*/
 }
