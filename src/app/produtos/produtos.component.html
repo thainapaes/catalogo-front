@@ -1,0 +1,81 @@
+<form [formGroup]="formulario">
+  <input type="number" class="form-control" formControlName="id" readonly [(ngModel)]="produto.id">
+  <input type="text" placeholder="Nome" class="form-control" formControlName="prodNome" [(ngModel)]="produto.prodNome">
+  @if (formulario.get('prodNome').hasError('required') && formulario.get('prodNome').touched) {
+    <p class="alert alert-warning">O campo nome não pode ser nulo</p>
+  }
+  <input type="text" placeholder="Preço" class="form-control" formControlName="preco" [(ngModel)]="produto.preco">
+  <input type="date" placeholder="Data do Lote" class="form-control" formControlName="dataLote" [(ngModel)]="produto.dataLote">
+  <input type="text" placeholder="Tipo do Produto" class="form-control" formControlName="tipo" [(ngModel)]="produto.tipo">
+
+  @if(exibirBotoes) {
+    <input type="button" value="Cadastrar" class="btn btn-primary" (click)="salvarProduto()" [disabled]="formulario.invalid">
+
+  } @else {
+    <input type="button" value="Alterar" class="btn btn-primary" (click)="alterar(formulario.value.id)" [disabled]="formulario.invalid">
+    <!--<input type="button" value="Inativar" class="btn btn-danger" (click)="inativar(formulario.value.celular)">-->
+    @if(statusDisponivel === 'S') {
+        <button class="custom-button-inativo"  (click)="disponibilizar(formulario.value.id)">
+          <i class="bi bi-x-square custom-icon-inativo"></i>
+        </button>
+
+        <!--<button class="btn btn-warning" (click)="disponibilizar(formulario.value.nome)"></button>-->
+    } @else {
+      <button class="custom-button-ativo" (click)="disponibilizar(formulario.value.id)">
+        <i class="bi bi-check-square-fill custom-icon-ativo"></i>
+      </button>
+
+      <!--<button class="btn btn-warning" (click)="disponibilizar(formulario.value.nome)"></button>-->
+    }
+    <input type="button" value="Cancelar" class="btn btn-primary" (click)="cancelar()">
+  }
+</form>
+
+
+<table class="table" *ngIf="tabelaVisivel">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Preço</th>
+      <th>Data do Lote</th>
+      <th>Tipo do Produto</th>
+      <!--<th>Marca</th>-->
+      <th>Disponibilizar</th>
+      <th>Selecionar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let p of produtos; index as i">
+      <td>{{i}}</td>
+      <td>{{p.id}}</td>
+      <td>{{p.prodNome}}</td>
+      <td>{{p.preco}}</td>
+      <td>{{p.dataLote}}</td>
+      <td>{{p.tipo}}</td>
+      @if(p.disponivel === 'S') {
+        <td>
+          <button class="custom-button-inativo" (click)="disponibilizar(p.id)">
+            <i class="bi bi-x-square custom-icon-inativo"></i>
+            <!--bi bi-x-square-fill-->
+          </button>
+        </td>
+      } @else {
+        <td>
+          <button class="custom-button-ativo" (click)="disponibilizar(p.id)">
+            <i class="bi bi-check-square-fill custom-icon-ativo"></i>
+          </button>
+          <!--bi bi-check-square-->
+        </td>
+      }
+      <td>
+        <!--<button class="btn btn-success" (click)="selecionarProduto(i)">Selecionar</button>-->
+        <button class="custom-button-editar" (click)="selecionarProduto(i)">
+          <i class="bi bi-pencil-square custom-icon-editar"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

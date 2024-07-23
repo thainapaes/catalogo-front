@@ -1,0 +1,80 @@
+<form [formGroup]="formulario">
+  <input type="number" class="form-control" formControlName="id" readonly [(ngModel)]="categoria.id">
+  <input type="text" placeholder="Nome" class="form-control" formControlName="nome" [(ngModel)]="categoria.nome">
+  <input type="text" placeholder="Seção" class="form-control" formControlName="secao" [(ngModel)]="categoria.secao">
+  @if(tabelaVisivel) {
+    <input type="number" placeholder="Id do Produto" class="form-control" formControlName="produtoId" [(ngModel)]="categoria.produtoId">
+  } @else {
+    <input type="number" placeholder="Id do Produto" class="form-control" formControlName="produtoId" readonly [(ngModel)]="categoria.produtoId.id">
+
+  }
+
+  @if(exibirBotoes) {
+    <input type="number" placeholder="Id do Produto teste" class="form-control" formControlName="produtoId" [(ngModel)]="categoria.produtoId">
+    <input type="button" value="Cadastrar" class="btn btn-primary" (click)="salvarCategoria()" [disabled]="formulario.invalid">
+
+  } @else {
+    <input type="button" value="Alterar" class="btn btn-primary" (click)="alterar(formulario.value.id)">
+    <!--<input type="button" value="Inativar" class="btn btn-danger" (click)="inativar(formulario.value.celular)">
+    @if(statusDisponivel === 'S') {
+        <button class="custom-button-inativo"  (click)="ddesvincular(formulario.value.id, categoria.produtoId)">
+          <i class="bi bi-x-square custom-icon-inativo"></i>
+        </button>-->
+
+        <!--<button class="btn btn-warning" (click)="desvincular(formulario.value.id, categoria.produtoId)"></button>
+    } @else {
+      <button class="custom-button-ativo" (click)="desvincular(c.id, c.produtoId.id)">
+        <i class="bi bi-check-square-fill custom-icon-ativo"></i>
+      </button>-->
+
+      <!--<button class="btn btn-warning" (click)="disponibilizar(formulario.value.nome)"></button>
+    }-->
+    <input type="button" value="Cancelar" class="btn btn-primary" (click)="cancelar()">
+  }
+</form>
+
+
+<table class="table" *ngIf="tabelaVisivel">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Id</th>
+      <th>Nome</th>
+      <th>Seção</th>
+      <th>Id do Produto</th>
+      <th>Disponibilizar</th>
+      <th>Selecionar</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let c of categorias; index as i">
+      <td>{{i}}</td>
+      <td>{{c.id}}</td>
+      <td>{{c.nome}}</td>
+      <td>{{c.secao}}</td>
+      <td>{{c.produtoId.id}}</td>
+      @if(c.produtoId !== null) {
+        <td>
+          <button class="custom-button-inativo" (click)="desvincular(c.id, c.produtoId.id)">
+            <i class="bi bi-x-square custom-icon-inativo"></i>
+            <!--bi bi-x-square-fill-->
+          </button>
+        </td>
+      } @else {
+        <td>
+          <button class="custom-button-ativo" (click)="desvincular(c.id, c.produtoId.id)">
+            <i class="bi bi-check-square-fill custom-icon-ativo"></i>
+          </button>
+          <!--bi bi-check-square-->
+        </td>
+      }
+      <td>
+        <!--<button class="btn btn-success" (click)="selecionarProduto(i)">Selecionar</button>-->
+        <button class="custom-button-editar" (click)="selecionarCategoria(i)">
+          <i class="bi bi-pencil-square custom-icon-editar"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

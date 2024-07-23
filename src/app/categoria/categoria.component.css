@@ -1,0 +1,93 @@
+form{
+  width: 500px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+input{
+  margin-bottom: 10px;
+}
+
+input[type="button"] {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.custom-button, .custom-button-inativo, .custom-button-editar, .custom-button-ativo, .custom-button-alterar {
+  background-color: rgb(253, 252, 248);
+  color: white;
+  border: none;
+  padding: 0.375rem 0.75rem; /* Match Bootstrap's button padding */
+  font-size: 1rem; /* Match Bootstrap's font size */
+  border-radius: 0.25rem; /* Match Bootstrap's border radius */
+  display: inline-flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+
+  line-height: 1.5; /* Match Bootstrap's line height */
+
+}
+
+.custom-button .custom-icon {
+  color: gold;
+  font-size: 1.25rem; /* Adjust icon size */
+  display: flex; /* Ensure the icon is a flex item */
+  align-items: center; /* Center icon vertically */
+
+}
+
+.custom-button:hover {
+  background-color: goldenrod;
+  transform: scale(1.05);
+}
+
+.custom-button-inativo .custom-icon-inativo {
+  color: red;
+  font-size: 1.25rem; /* Adjust icon size */
+  display: flex; /* Ensure the icon is a flex item */
+  align-items: center; /* Center icon vertically */
+}
+
+.custom-button-inativo:hover {
+  background-color: palevioletred;
+  transform: scale(1.05);
+}
+
+.custom-button-ativo .custom-icon-ativo {
+  color: green;
+  font-size: 1.25rem; /* Adjust icon size */
+  display: flex; /* Ensure the icon is a flex item */
+  align-items: center; /* Center icon vertically */
+}
+
+.custom-button-ativo:hover {
+  background-color: greenyellow;
+  transform: scale(1.05);
+}
+
+.custom-button-editar .custom-icon-editar {
+  color: purple;
+  font-size: 1.25rem; /* Adjust icon size */
+  display: flex; /* Ensure the icon is a flex item */
+  align-items: center; /* Center icon vertically */
+}
+
+.custom-button-editar:hover {
+  background-color: plum;
+  transform: scale(1.05);
+}
+
+.custom-button-alterar .custom-icon-alterar {
+  color: #007bff;
+  font-size: 1.25rem; /* Adjust icon size */
+  display: flex; /* Ensure the icon is a flex item */
+  align-items: center; /* Center icon vertically */
+
+}
+
+.custom-button-alterar:hover {
+  background-color: #5aa6f7;
+  transform: scale(1.05);
+}
